@@ -1,0 +1,31 @@
+body {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.profile-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+input,
+select,
+button {
+  padding: 10px;
+}
+
+.user-card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-top: 15px;
+}
+
+.clothes-list {
+  margin-top: 10px;
+}
+
+.clothes-item {
+  padding: 5px 0;
+}

@@ -3,8 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <title>코디 추천 웹</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <h1>코디 추천 웹</h1>
+
+  <div class="profile-form">
+    <input
+      type="text"
+      id="nickname"
+      placeholder="닉네임"
+    >
+
+    <select id="gender">
+      <option value="">성별 선택</option>
+      <option value="남성">남성</option>
+      <option value="여성">여성</option>
+    </select>
+
+    <button id="registerBtn">
+      등록
+    </button>
+  </div>
+
+  <hr>
+
+  <div id="userList"></div>
+
+  <script src="script.js"></script>
 </body>
 </html>

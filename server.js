@@ -12,6 +12,9 @@ const path =
 const weatherRoutes =
   require("./routes/weatherRoutes");
 
+const authRoutes =
+  require("./routes/authRoutes");
+
 const app = express();
 
 app.use(express.json());
@@ -25,6 +28,11 @@ app.use(
 app.use(
   "/weather",
   weatherRoutes
+);
+
+app.use(
+  "/auth",
+  authRoutes
 );
 
 mongoose.connect(

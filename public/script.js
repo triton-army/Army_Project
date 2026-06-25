@@ -289,9 +289,39 @@ async function loadWeather() {
     console.error(error);
 
     document.getElementById(
-      "weatherBox"
-    ).textContent =
-      "날씨 정보를 불러오지 못했습니다.";
+  "weatherBox"
+).innerHTML = `
+
+  <h3>
+    현재 날씨
+  </h3>
+
+  <p>
+    지역:
+    ${data.city}
+  </p>
+
+  <p>
+    상태:
+    ${data.weather}
+  </p>
+
+  <p>
+    기온:
+    ${data.temp}℃
+  </p>
+
+  <p>
+    체감:
+    ${data.feelsLike}℃
+  </p>
+
+  <p>
+    습도:
+    ${data.humidity}%
+  </p>
+
+`;
   }
 }
 

@@ -7,10 +7,14 @@ const {
     saveUsers
 } = require("../models/userModel");
 
+const auth = require("../middleware/auth");
+
 const router = express.Router();
 
+// 회원가입
 router.post("/register", async (req, res) => {
-    const { username, password } = req.body;
+
+    const { username, nickname, password } = req.body;
 
     const users = getUsers();
 
@@ -30,6 +34,7 @@ router.post("/register", async (req, res) => {
     const newUser = {
         id: Date.now(),
         username,
+        nickname,
         password: hashedPassword
     };
 
@@ -40,9 +45,12 @@ router.post("/register", async (req, res) => {
     res.json({
         message: "회원가입 성공"
     });
+
 });
 
+// 로그인
 router.post("/login", async (req, res) => {
+
     const { username, password } = req.body;
 
     const users = getUsers();
@@ -71,7 +79,6 @@ router.post("/login", async (req, res) => {
 
     const token = jwt.sign(
         {
-            id: user.id,
             username: user.username
         },
         process.env.JWT_SECRET,
@@ -82,16 +89,22 @@ router.post("/login", async (req, res) => {
 
     res.json({
         message: "로그인 성공",
-        token
+        token,
+        user: {
+            username: user.username,
+            nickname: user.nickname
+        }
     });
+
 });
 
-const auth = require("../middleware/auth");
-
+// 로그인 확인
 router.get("/me", auth, (req, res) => {
+
     res.json({
         user: req.user
     });
+
 });
 
 module.exports = router;

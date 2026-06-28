@@ -5,6 +5,7 @@ const path = require("path");
 
 const weatherRoutes = require("./routes/weatherRoutes");
 const authRoutes = require("./routes/authRoutes");
+const clothesRoutes = require("./routes/clothesRoutes");
 
 const app = express();
 
@@ -13,6 +14,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/weather", weatherRoutes);
 app.use("/auth", authRoutes);
+app.use("/clothes", clothesRoutes);
+
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "login.html"));

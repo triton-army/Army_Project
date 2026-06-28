@@ -2,6 +2,7 @@ const registerBtn = document.getElementById("registerBtn");
 
 registerBtn.addEventListener("click", async () => {
     const username = document.getElementById("username").value;
+    const nickname = document.getElementById("nickname").value;
     const password = document.getElementById("password").value;
 
     const response = await fetch("/auth/register", {
@@ -11,6 +12,7 @@ registerBtn.addEventListener("click", async () => {
         },
         body: JSON.stringify({
             username,
+            nickname,
             password
         })
     });

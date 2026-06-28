@@ -1,0 +1,24 @@
+[
+    {
+        "id": 3,
+        "userId": "triton3412",
+        "name": "컨버스",
+        "category": "신발",
+        "color": "블랙",
+        "season": "사계절",
+        "style": "미니멀",
+        "brand": "컨버스",
+        "size": "L"
+    },
+    {
+        "id": 4,
+        "userId": "triton3412",
+        "name": "반팔",
+        "category": "상의",
+        "color": "화이트",
+        "season": "봄",
+        "style": "캐주얼",
+        "brand": "아디다스",
+        "size": "XL"
+    }
+]

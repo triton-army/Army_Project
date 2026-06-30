@@ -107,4 +107,17 @@ router.get("/me", auth, (req, res) => {
 
 });
 
+//남의 옷장 보기
+router.get("/users", (req, res) => {
+    const users = getUsers();
+
+    const result = users.map(user => ({
+        username: user.username,
+        nickname: user.nickname
+    }));
+
+    res.json(result);
+});
+
+
 module.exports = router;

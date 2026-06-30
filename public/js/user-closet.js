@@ -1,12 +1,19 @@
-const userId = localStorage.getItem("userId");
-const nickname = localStorage.getItem("nickname");
-
-document.getElementById("title").innerText = `${nickname}님의 옷장`;
+const params = new URLSearchParams(location.search);
+const userId = params.get("user");
 
 loadClothes();
 
 async function loadClothes() {
-    const response = await fetch(`/clothes/${userId}`);
+
+    const userResponse = await fetch("/auth/users");
+    const users = await userResponse.json();
+
+    const user = users.find(u => u.username === userId);
+
+    document.getElementById("title").innerText =
+        `${user.nickname}님의 옷장`;
+
+    const response = await fetch(`/clothes/user/${userId}`);
     const clothes = await response.json();
 
     const list = document.getElementById("clothesList");
@@ -18,6 +25,7 @@ async function loadClothes() {
     }
 
     clothes.forEach(item => {
+
         list.innerHTML += `
         <div class="clothes-card">
             <h3>${item.name}</h3>
@@ -27,24 +35,8 @@ async function loadClothes() {
             <p>스타일 : ${item.style}</p>
             <p>브랜드 : ${item.brand}</p>
             <p>사이즈 : ${item.size}</p>
-            <button onclick="editClothes(${item.id})">수정</button>
-            <button onclick="deleteClothes(${item.id})">삭제</button>
         </div>`;
+
     });
-}
 
-async function deleteClothes(id) {
-    if (!confirm("삭제하시겠습니까?")) return;
-
-    const response = await fetch(`/clothes/user/${userId}`);
-
-    const result = await response.json();
-
-    alert(result.message);
-
-    loadClothes();
-}
-
-function editClothes(id) {
-    location.href = `add-clothes.html?id=${id}`;
 }

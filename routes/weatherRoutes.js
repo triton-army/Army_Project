@@ -4,38 +4,40 @@ const axios = require("axios");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
+
     try {
-        const city = "Changwon";
+
+        const city = req.query.city;
+
+        console.log("검색 도시:", req.query.city);
 
         const response = await axios.get(
             "https://api.openweathermap.org/data/2.5/weather",
             {
                 params: {
-                    q: city,
+                    q: `${city},KR`,
                     appid: process.env.OPENWEATHER_API_KEY,
                     units: "metric",
                     lang: "kr"
-                }
+}
             }
         );
 
-        const weather = response.data;
+        res.json(response.data);
 
-        res.json({
-            city: weather.name,
-            temp: weather.main.temp,
-            feelsLike: weather.main.feels_like,
-            humidity: weather.main.humidity,
-            weather: weather.weather[0].description
-        });
+    } catch (err) {
 
-    } catch (error) {
-        console.error(error);
+        console.error("===== OpenWeather Error =====");
+        console.error(err.response?.data);
+        console.error(err.message);
 
         res.status(500).json({
-            error: "날씨 정보를 가져오지 못했습니다."
+            message: "날씨 조회 실패",
+            error: err.response?.data || err.message
         });
+
     }
+
 });
 
 module.exports = router;

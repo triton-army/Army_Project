@@ -82,26 +82,23 @@ router.delete("/:id", (req, res) => {
 });
 
 // 옷 수정
-router.put("/:id", (req, res) => {
+router.get("/item/:id", (req, res) => {
     const clothes = JSON.parse(fs.readFileSync(clothesPath, "utf8"));
-    const index = clothes.findIndex(item => item.id == req.params.id);
+    const item = clothes.find(c => c.id == req.params.id);
 
-    if (index === -1) {
+    if (!item) {
         return res.status(404).json({
             message: "옷을 찾을 수 없습니다."
         });
     }
 
-    clothes[index] = {
-        ...clothes[index],
-        ...req.body
-    };
+    res.json(item);
+});
 
-    fs.writeFileSync(clothesPath, JSON.stringify(clothes, null, 4));
-
-    res.json({
-        message: "수정 완료"
-    });
+router.get("/user/:userId", (req, res) => {
+    const clothes = JSON.parse(fs.readFileSync(clothesPath, "utf8"));
+    const myClothes = clothes.filter(item => item.userId === req.params.userId);
+    res.json(myClothes);
 });
 
 module.exports = router;

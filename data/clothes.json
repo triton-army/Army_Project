@@ -20,5 +20,16 @@
         "style": "캐주얼",
         "brand": "아디다스",
         "size": "XL"
+    },
+    {
+        "id": 5,
+        "userId": "triton3515",
+        "name": "qwer",
+        "category": "상의",
+        "color": "화이트",
+        "season": "봄",
+        "style": "캐주얼",
+        "brand": "asdf",
+        "size": "S"
     }
 ]

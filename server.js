@@ -15,7 +15,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/weather", weatherRoutes);
 app.use("/auth", authRoutes);
 app.use("/clothes", clothesRoutes);
-
+app.use("/weather", require("./routes/weatherRoutes"));
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "login.html"));

@@ -52,24 +52,20 @@ weatherBtn.addEventListener("click", () => {
 async function loadWeather(city) {
 
     const response = await fetch(`/weather?city=${encodeURIComponent(city)}`);
-
-    console.log(response.status);
-
     const weather = await response.json();
 
-    console.log(weather);
-
-    if (!weather.main || !weather.weather) {
-        document.getElementById("weatherBox").innerHTML =
-            "<p>날씨 정보를 불러오지 못했습니다.</p>";
+    if (!response.ok) {
+        alert(weather.message);
         return;
     }
 
     document.getElementById("weatherBox").innerHTML = `
-    <h3>🌤 현재 날씨</h3>
-    <p>📍 ${weather.city}</p>
-    <p>🌡 ${weather.temp}℃</p>
-    <p>☁ ${weather.weather}</p>
-    <p>💧 습도 ${weather.humidity}%</p>
+        <h3>🌤 현재 날씨</h3>
+        <p>📍 ${weather.city}</p>
+        <p>🌡 ${weather.temp}℃</p>
+        <p>🤗 체감 ${weather.feelsLike}℃</p>
+        <p>☁ ${weather.weather}</p>
+        <p>💧 습도 ${weather.humidity}%</p>
     `;
+
 }

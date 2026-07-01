@@ -16,6 +16,7 @@ app.use("/weather", weatherRoutes);
 app.use("/auth", authRoutes);
 app.use("/clothes", clothesRoutes);
 app.use("/weather", require("./routes/weatherRoutes"));
+app.use("/outfits", require("./routes/outfitRoutes"));
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "login.html"));

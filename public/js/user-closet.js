@@ -40,3 +40,10 @@ async function loadClothes() {
     });
 
 }
+
+document.getElementById("recommendBtn").addEventListener("click", () => {
+
+    location.href =
+        `add-outfit.html?user=${userId}`;
+
+});

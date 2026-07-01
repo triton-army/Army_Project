@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "ownerId": "triton3412",
+        "creatorId": "triton3412",
+        "title": "test",
+        "description": "testing",
+        "top": "4",
+        "bottom": null,
+        "shoes": "3",
+        "outer": null,
+        "likes": 0,
+        "dislikes": 0,
+        "createdAt": "2026-07-01T14:05:24.237Z"
+    }
+]
